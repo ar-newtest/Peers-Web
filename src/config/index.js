@@ -1,7 +1,11 @@
+const path = require("path");
+
 const Peer = require("./peer");
 
 module.exports = {
 	Peer,
+
+	WEB_DIR: path.join(__dirname + "../../../public/"),
 
 	MAIN: {
 		PORT: 7070,

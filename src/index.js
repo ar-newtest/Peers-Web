@@ -2,12 +2,12 @@
 const express = require("express");
 const app = express();
 const server = require("http").createServer(app);
-const io = require("socket.io").listen(server);
+const io = require("socket.io")(server);
 
 const path = require("path");
 
 // Import Config File
-const { Peer, MAIN, DEBUG } = require("./config");
+const { Peer, MAIN, DEBUG, WEB_DIR } = require("./config");
 
 // Start Server
 server.listen(MAIN.PORT, () =>
@@ -15,13 +15,16 @@ server.listen(MAIN.PORT, () =>
 );
 
 // Set UI Directory
-app.set("views", "../public/");
+app.use(express.static(WEB_DIR));
 
 // Peers Map Module
 const peersMap = require("./peersMap");
 app.use("/connect", peersMap.router);
+peersMap.init(io);
 
+// Module Rotes
 app.get("/", (req, res) => {
+	// PeersMap module Routes
 	if (Peer.PEER_TYPE == "NULL") res.redirect("/connect");
 	else if (Peer.PEER_TYPE == "HOST") res.redirect("/connect/host");
 	else res.redirect("/connect/client");

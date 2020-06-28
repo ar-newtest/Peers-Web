@@ -1,8 +1,22 @@
+const { DEBUG } = require("../config");
+
 const router = require("./routes");
 
-const say = () => console.log("Hi");
+const sampleList = [
+	{ NAME: "Alpha", IP: "192.168.43.1" },
+	{ NAME: "Beta", IP: "192.168.43.23" },
+	{ NAME: "Gamma", IP: "192.168.43.96" },
+];
+
+const init = (io) => {
+	io.on("connection", (socket) => {
+		console.log(DEBUG.PEERS_MAP, "Connected");
+
+		socket.emit("PM_LIST", sampleList);
+	});
+};
 
 module.exports = {
 	router,
-	say,
+	init,
 };
