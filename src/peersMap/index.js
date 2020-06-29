@@ -1,3 +1,6 @@
+const host = require("./host");
+const client = require("./client");
+
 const { DEBUG } = require("../config");
 
 const router = require("./routes");
@@ -15,6 +18,8 @@ const init = (io) => {
 		socket.emit("PM_LIST", sampleList);
 	});
 };
+
+client.bcast();
 
 module.exports = {
 	router,

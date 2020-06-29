@@ -11,6 +11,10 @@ module.exports = {
 		PORT: 7070,
 	},
 
+	PEERS_MAP: {
+		PORT: 20000,
+	},
+
 	DEBUG: {
 		MAIN: "[ MAIN ] :: ",
 		PEERS_MAP: "[ PEERS_MAP ] :: ",
