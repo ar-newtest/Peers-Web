@@ -1,5 +1,7 @@
 const path = require("path");
 
+const port = process.argv[2] ? process.argv[2] : 7070;
+
 const Peer = require("./peer");
 
 module.exports = {
@@ -8,7 +10,8 @@ module.exports = {
 	WEB_DIR: path.join(__dirname + "../../../public/"),
 
 	MAIN: {
-		PORT: 7070,
+		PORT: port,
+		NAME: "Aman",
 	},
 
 	PEERS_MAP: {
@@ -20,5 +23,6 @@ module.exports = {
 		PEERS_MAP: "[ PEERS_MAP ] :: ",
 		PEERS_MAP_HOST: "[ PEERS_MAP_HOST ] ::",
 		PEERS_MAP_CLIENT: "[ PEERS_MAP_CLIENT ] ::",
+		PEERS_MAP_HOST_LIST: "[ PEERS_MAP_HOST_LIST ] ::",
 	},
 };

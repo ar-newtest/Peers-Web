@@ -5,7 +5,7 @@ const IP = require("../../utils/ip");
 
 const { Peer, DEBUG, PEERS_MAP } = require("../../config");
 
-const bcast = () => {
+const bcast = (callback_addToList) => {
 	socket.bind(PEERS_MAP.PORT);
 
 	socket.on("listening", () => {
@@ -16,13 +16,16 @@ const bcast = () => {
 		isRunning = true;
 	});
 
-	console.log(DEBUG.PEERS_MAP + "Listing to Multicast Messages");
+	console.log(DEBUG.PEERS_MAP + "Listing to Broadcast Messages");
 
 	socket.on("message", function (message, rinfo) {
 		console.info(
 			DEBUG.PEERS_MAP +
 				`Message from: ${rinfo.address}:${rinfo.port} - ${message}`
 		);
+
+		const item = JSON.parse(message.toString());
+		callback_addToList(item);
 	});
 };
 

@@ -15,7 +15,7 @@ server.listen(MAIN.PORT, () =>
 );
 
 // Set UI Directory
-app.use(express.static(WEB_DIR));
+app.use("/assets", express.static(WEB_DIR));
 
 // Peers Map Module
 const peersMap = require("./peersMap");

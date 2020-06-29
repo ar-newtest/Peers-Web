@@ -1,7 +1,7 @@
 const host = require("./host");
 const client = require("./client");
 
-const { DEBUG } = require("../config");
+const { Peer, DEBUG } = require("../config");
 
 const router = require("./routes");
 
@@ -16,10 +16,11 @@ const init = (io) => {
 		console.log(DEBUG.PEERS_MAP, "Connected");
 
 		socket.emit("PM_LIST", sampleList);
+
+		if (Peer.PEER_TYPE == "HOST") host.init();
+		else if (Peer.PEER_TYPE == "CLIENT") client.init(socket);
 	});
 };
-
-client.bcast();
 
 module.exports = {
 	router,

@@ -3,18 +3,20 @@ const socket = dgram.createSocket({ type: "udp4", reuseAddr: true });
 
 const IP = require("../../utils/ip");
 
-const { DEBUG, PEERS_MAP } = require("../../config");
+const { DEBUG, PEERS_MAP, MAIN } = require("../../config");
 
-const msg = Buffer.from(JSON.stringify({ Name: "Aman", IP: IP() }));
+const msg = Buffer.from(
+	JSON.stringify({ NAME: MAIN.NAME, IP: IP(), PORT: MAIN.PORT })
+);
 
 const sendMsg = () => {
 	socket.send(msg, PEERS_MAP.PORT, IP.BCAST_ADDR(), (err) => {
 		if (err)
 			return console.error(
-				DEBUG.PEERS_MAP + "Unable to multicast message",
+				DEBUG.PEERS_MAP + "Unable to broadcast message",
 				err
 			);
-		console.log(DEBUG.PEERS_MAP + "Multicasting message");
+		console.log(DEBUG.PEERS_MAP + "Broadcasting message => " + msg.toString());
 	});
 };
 
