@@ -6,9 +6,9 @@ const { Peer, DEBUG } = require("../config");
 const router = require("./routes");
 
 const sampleList = [
-	{ NAME: "Alpha", IP: "192.168.43.1" },
-	{ NAME: "Beta", IP: "192.168.43.23" },
-	{ NAME: "Gamma", IP: "192.168.43.96" },
+	{ NAME: "Alpha", IP: "192.168.43.1", PORT: 7070 },
+	{ NAME: "Beta", IP: "192.168.43.23", PORT: 7070 },
+	{ NAME: "Gamma", IP: "192.168.43.96", PORT: 7070 },
 ];
 
 const init = (io) => {
@@ -17,8 +17,8 @@ const init = (io) => {
 
 		socket.emit("PM_LIST", sampleList);
 
-		if (Peer.PEER_TYPE == "HOST") host.init();
-		else if (Peer.PEER_TYPE == "CLIENT") client.init(socket);
+		if (Peer.TYPE == "HOST") host.init();
+		else if (Peer.TYPE == "CLIENT") client.init(socket);
 	});
 };
 

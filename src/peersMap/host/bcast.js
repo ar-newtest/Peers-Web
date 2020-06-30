@@ -1,16 +1,14 @@
 const dgram = require("dgram");
 const socket = dgram.createSocket({ type: "udp4", reuseAddr: true });
 
-const IP = require("../../utils/ip");
-
-const { DEBUG, PEERS_MAP, MAIN } = require("../../config");
+const { Peer, DEBUG, PEERS_MAP, MAIN } = require("../../config");
 
 const msg = Buffer.from(
-	JSON.stringify({ NAME: MAIN.NAME, IP: IP(), PORT: MAIN.PORT })
+	JSON.stringify({ NAME: MAIN.NAME, IP: Peer.SELF.IP, PORT: MAIN.PORT })
 );
 
 const sendMsg = () => {
-	socket.send(msg, PEERS_MAP.PORT, IP.BCAST_ADDR(), (err) => {
+	socket.send(msg, PEERS_MAP.PORT, Peer.SELF.BCAST_ADDR, (err) => {
 		if (err)
 			return console.error(
 				DEBUG.PEERS_MAP + "Unable to broadcast message",

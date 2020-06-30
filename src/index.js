@@ -25,7 +25,7 @@ peersMap.init(io);
 // Module Rotes
 app.get("/", (req, res) => {
 	// PeersMap module Routes
-	if (Peer.PEER_TYPE == "NULL") res.redirect("/connect");
-	else if (Peer.PEER_TYPE == "HOST") res.redirect("/connect/host");
+	if (Peer.TYPE == "NULL") res.redirect("/connect");
+	else if (Peer.TYPE == "HOST") res.redirect("/connect/host");
 	else res.redirect("/connect/client");
 });

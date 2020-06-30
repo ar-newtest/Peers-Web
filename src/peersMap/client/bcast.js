@@ -1,8 +1,6 @@
 const dgram = require("dgram");
 const socket = dgram.createSocket({ type: "udp4", reuseAddr: true });
 
-const IP = require("../../utils/ip");
-
 const { Peer, DEBUG, PEERS_MAP } = require("../../config");
 
 const bcast = (callback_addToList) => {

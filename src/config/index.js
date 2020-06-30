@@ -21,6 +21,7 @@ module.exports = {
 	DEBUG: {
 		MAIN: "[ MAIN ] :: ",
 		PEERS_MAP: "[ PEERS_MAP ] :: ",
+		PEERS_MAP_ROUTES: "[ PEERS_MAP_ROUTES ] :: ",
 		PEERS_MAP_HOST: "[ PEERS_MAP_HOST ] ::",
 		PEERS_MAP_CLIENT: "[ PEERS_MAP_CLIENT ] ::",
 		PEERS_MAP_HOST_LIST: "[ PEERS_MAP_HOST_LIST ] ::",
